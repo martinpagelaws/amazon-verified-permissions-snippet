@@ -8,8 +8,9 @@ This is a small application to demo Amazon Verified Permissions. The application
 ![Architecture diagram](docs/architecture.svg)
 * all requests need to go through the API Gateway
 * all requests need to include access and identity token in the header (refer to the "See how it works" section below) - that means a user needs to acquire those credentials before making any request
- * the access token is used to authorize the request on the API Gateway layer
- * the identity token is used to authorize the request with Amazon Verified Permissions on the application layer
+* users are managed with Amazon Cognito - credentials can be acquired by calling the initiateAuth API of Cognito
+ - the access token is used to authorize the request on the API Gateway layer
+ - the identity token is used to authorize the request with Amazon Verified Permissions on the application layer
 * an AWS Lambda Function handles all API requests, authorizes them with Verified Permissions and returns the results in json
 * all data is stored in an Amazon DynamoDB table
 

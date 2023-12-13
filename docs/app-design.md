@@ -24,7 +24,7 @@ All data is stored in DynamoDB
 * author is a small handle that is derived from the sub, so we can query for posts by a specific user, without exposing the userId in the front-end
 
 ## Using the application
-* GET / - returns all existing posts
-* GET /posts?author=<author_tag> - returns all posts of the specified author
-* POST /posts - creates a new post, requires json body {"text": <post content>} 
-* DELETE /posts/<postId> - deletes a post
+* `GET /` - returns all existing posts
+* `GET /posts?author=<author_tag>` - returns all posts of the specified author
+* `POST /posts` - creates a new post, requires json body `{"text": <post content>}`
+* `DELETE /posts/<postId>` - deletes a post

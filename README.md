@@ -65,7 +65,7 @@ First, copy the `conf.py` to a file called `conf_local.py` and populate it with 
 
 You can then use the scripts to:
 * authenticate a user, e.g. alice, run `$ python auth.py alice`
-* make an api call with this pattern - `$ python  api_call.py <username> <method> <api_route> "<some_text>"` (only username is required, rest optional and dependend on what you want to do - yes, very dirty setup, not meant to stay). Here are some examples:
+* make an api call with this pattern - `$ python  api_call.py <username> <method> <api_route> "<some_text>"` - only username is required, rest optional and depends on what you want to do. Here are some examples:
 	* get all posts as alice: `$ python api_call.py alice`
 	* create a new post as alice `$ python api_call.py alice post /posts "My first post"`
 	* get posts from bob as alive `$ python api_call.py alice get "/posts?author=<bobs author tag>"`
@@ -83,7 +83,7 @@ Content-Type: application/json
 * observe how the request details are captured from the event and how principal, action and resource are defined
 * observe how the function returns early, if the permission check fails by checking for the "DENY" string in the authorization result
 * navigate to `lambda/main/permissions.py` to see how the request to Verified Permissions is constructed
-* all policies are managed with CDK - checkt the `cdk/policy_store` directory:
+* all policies are managed with CDK - check the `cdk/policy_store` directory:
     * the schema.json specifies what kind of principals, actions and resources with what kind of attributes can exist in the context of the Verified Permissions policy store - schema validation is set to STRICT in this example so when you want to create new policies, you need to make sure that they adhere to the schema; otherwise the creation will fail
     * the `.cedar` files contain the actual policies - they define what is possible and what not; refer to the `docs/app-design.md` to understand the assumptions behind the policies
     * there is one policy that explicitely denies a certain action from happening - this is to show how policies are evaluated:

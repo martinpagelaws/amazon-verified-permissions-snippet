@@ -59,7 +59,7 @@ Note: The user needs to acquire a fresh identity token, once the attribute is se
 
 # See how it works
 ## Make some calls and observe behavior
-The `./scipts` directory contains what could be considered the front-end application. A front-end that lives in your commandline. Requirements are installed with the core requirements for cdk. 
+The `scripts/` directory contains what could be considered the front-end application. A front-end that lives in your commandline. Requirements are installed with the core requirements for cdk. 
 
 First, copy the `conf.py` to a file called `conf_local.py` and populate it with details from the steps before. 
 

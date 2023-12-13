@@ -9,8 +9,8 @@ This is a small application to demo Amazon Verified Permissions. The application
 * all requests need to go through the API Gateway
 * all requests need to include access and identity token in the header (refer to the "See how it works" section below) - that means a user needs to acquire those credentials before making any request
 * users are managed with Amazon Cognito - credentials can be acquired by calling the initiateAuth API of Cognito
-  - the access token is used to authorize the request on the API Gateway layer
-  - the identity token is used to authorize the request with Amazon Verified Permissions on the application layer
+    * the access token is used to authorize the request on the API Gateway layer
+    * the identity token is used to authorize the request with Amazon Verified Permissions on the application layer
 * an AWS Lambda Function handles all API requests, authorizes them with Verified Permissions and returns the results in json
 * all data is stored in an Amazon DynamoDB table
 
@@ -57,9 +57,10 @@ aws cognito-idp admin-update-user-attributes --user-pool-id $USER_POOL_ID --user
 Note: The user needs to acquire a fresh identity token, once the attribute is set!
 
 # See how it works
+## Make some calls and observe behavior
 The `./scipts` directory contains what could be considered the front-end application. A front-end that lives in your commandline. Requirements are installed with the core requirements for cdk. 
 
-First, copy the conf.py to a file called conf_local.py and populate it with details from the steps before. 
+First, copy the `conf.py` to a file called `conf_local.py` and populate it with details from the steps before. 
 
 You can then use the scripts to:
 * authenticate a user, e.g. alice, run `$ python auth.py alice`
@@ -75,3 +76,9 @@ Authorization: Bearer <access_token>
 IdToken: <identity_token>
 Content-Type: application/json
 ```
+
+## Inspect the code
+* start at the `lambda/main/main.py` - the entry point for all requests
+* observe how the request details are captured from the event and how principal, action and resource are defined
+* observe how the function returns early, if the permission check fails
+* navigate to `lambda/main/permissions.py` to see how the request to Verified Permissions is constructed

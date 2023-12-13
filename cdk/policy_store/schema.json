@@ -1,0 +1,82 @@
+{
+	"SimplePosts": {
+		"actions": {
+			"GetAllPosts": {
+				"appliesTo": {
+					"principalTypes": [
+						"User"
+					],
+					"resourceTypes": [
+						"Application"
+					]
+				}
+			},
+			"GetUserPosts": {
+				"appliesTo": {
+					"principalTypes": [
+						"User"
+					],
+					"resourceTypes": [
+						"Application"
+					]
+				}
+			},
+			"CreatePost": {
+				"appliesTo": {
+					"principalTypes": [
+						"User"
+					],
+					"resourceTypes": [
+						"Application"
+					]
+				}
+			},
+			"DeletePost": {
+				"appliesTo": {
+					"principalTypes": [
+						"User"
+					],
+					"resourceTypes": [
+						"Post"
+					]
+				}
+			}
+		},
+		"entityTypes": {
+			"Application": {
+				"memberOfTypes": [],
+				"shape": {
+					"type": "Record",
+					"attributes": {}
+				}
+			},
+			"Post": {
+				"memberOfTypes": [],
+				"shape": {
+					"type": "Record",
+					"attributes": {
+						"owner": {
+							"required": true,
+							"type": "Entity",
+							"name": "User"
+						}
+					}
+				}
+			},
+			"User": {
+				"memberOfTypes": [],
+				"shape": {
+					"type": "Record",
+					"attributes": {
+						"custom": {
+							"type": "Record",
+							"attributes": {
+								"appRole": { "type": "String" }
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
